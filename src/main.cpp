@@ -33,11 +33,11 @@ void pre_auton() {
 }
 
 void autonomous() {
-  Drivetrain.driveFor(-52, inches);
   Drivetrain.driveFor(52, inches);
+  Drivetrain.driveFor(-52, inches);
   Drivetrain.turnFor(-45 /* assuming that left is negative. */, degrees);
-  Drivetrain.driveFor(48, inches);
   Drivetrain.driveFor(-48, inches);
+  Drivetrain.driveFor(48, inches);
 }
 
 void usercontrol() {
