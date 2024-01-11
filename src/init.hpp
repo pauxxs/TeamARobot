@@ -39,7 +39,7 @@ motor rightMotorA = motor(PORT9, ratio18_1, true);
 motor rightMotorB = motor(PORT10, ratio18_1, true);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
 inertial DrivetrainInertial = inertial(PORT11);
-smartdrive Drivetrain = smartdrive(LeftDriveSmart, RightDriveSmart, DrivetrainInertial, 319.19, 320, 40, mm, 1);
+drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, /*DrivetrainInertial, */319.19, 320, 40, mm, 1);
 
 // (I'm assuming that false is normal turn direction)
 motor shooter = motor(PORT20, ratio36_1, false); // Shooter
@@ -47,26 +47,6 @@ motor pullup = motor(PORT12, ratio6_1, false); // Pull up
 
 // hydralic
 digital_out lockingPnuematics  = digital_out(Brain.ThreeWirePort.F);
-
-
-void calibrateDrivetrain() {
-  wait(200, msec);
-  Brain.Screen.print("Calibrating");
-  Brain.Screen.newLine();
-  Brain.Screen.print("Inertial");
-
-  /**
-   *  Later *
-  */
-//   DrivetrainInertial.calibrate();
-//   while (DrivetrainInertial.isCalibrating()) {
-//     wait(25, msec);
-//   }
-
-  // Clears the screen and returns the cursor to row 1, column 1.
-  Brain.Screen.clearScreen();
-  Brain.Screen.setCursor(1, 1);
-}
 
 // Helper to make playing sounds from the V5 in VEXcode easier and
 // keeps the code cleaner by making it clear what is happening.
