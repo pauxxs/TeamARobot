@@ -38,12 +38,12 @@ motor_group LeftDriveSmart = motor_group(leftMotorA, leftMotorB);
 motor rightMotorA = motor(PORT9, ratio18_1, true);
 motor rightMotorB = motor(PORT10, ratio18_1, true);
 motor_group RightDriveSmart = motor_group(rightMotorA, rightMotorB);
-inertial DrivetrainInertial = inertial(PORT11);
+// inertial DrivetrainInertial = inertial(PORT11);
 drivetrain Drivetrain = drivetrain(LeftDriveSmart, RightDriveSmart, /*DrivetrainInertial, */319.19, 320, 40, mm, 1);
 
 // (I'm assuming that false is normal turn direction)
-motor shooter = motor(PORT20, ratio36_1, false); // Shooter
-motor pullup = motor(PORT12, ratio6_1, false); // Pull up
+motor shooter = motor(PORT12, ratio36_1, false); // Shooter
+motor pullup = motor(PORT20, ratio6_1, false); // Pull up
 
 // hydralic
 digital_out lockingPnuematics  = digital_out(Brain.ThreeWirePort.F);
