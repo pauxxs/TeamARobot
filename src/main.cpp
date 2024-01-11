@@ -12,6 +12,38 @@ using namespace vex;
 
 competition Comp;
 
+namespace helper_functions {
+  void lockingPnuematicHigh() {
+    lockingPnuematics.set(true);
+  }
+
+  void lockingPnuematicLow() {
+    lockingPnuematics.set(false);
+  }
+
+
+  void shooterEngage() {
+    shooter.spin(forward);
+  }
+
+  void shooterDisengage() {
+    shooter.stop();
+  }
+
+
+  void pullSet0() {
+    pullup.setPosition(0, degrees);
+  }
+
+  void pullSet720() { 
+    pullup.setPosition(720, degrees);
+  }
+
+  void pullSet1440() { 
+    pullup.setPosition(1440, degrees);
+  }
+}
+
 void controllerSetup() {
   // pnuematics
   Controller1.ButtonA.pressed(helper_functions::lockingPnuematicHigh);
@@ -32,7 +64,7 @@ void pre_auton() {
   pullup.setVelocity(100, percent);
 }
 
-void autonomous() {
+void autonomous_() {
   Drivetrain.driveFor(52, inches);
   Drivetrain.driveFor(-52, inches);
   Drivetrain.turnFor(27.5 /* assuming that left is negative. */, degrees);
@@ -42,6 +74,7 @@ void autonomous() {
 
 void usercontrol() {
   controllerSetup();
+  // RemoteControlCodeEnabled = true;
 
   while (true) {
     wait(20, msec);
@@ -49,7 +82,7 @@ void usercontrol() {
 }
 
 int main() {
-  Comp.autonomous(autonomous);
+  Comp.autonomous(autonomous_);
   Comp.drivercontrol(usercontrol);
 
   pre_auton();

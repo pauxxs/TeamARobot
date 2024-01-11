@@ -66,6 +66,7 @@ int rc_auto_loop_function_Controller1() {
   // update the motors based on the input values
   while(true) {
     if(RemoteControlCodeEnabled) {
+        Brain.Screen.print("remote loop");
       
       // calculate the drivetrain motor velocities from the controller joystick axies
       // left = Axis3 + Axis4
@@ -106,37 +107,3 @@ int rc_auto_loop_function_Controller1() {
 }
 
 #pragma endregion VEXcode Generated Robot Configuration
-
-competition Competition;
-
-namespace helper_functions {
-  void lockingPnuematicHigh() {
-    lockingPnuematics.set(true);
-  }
-
-  void lockingPnuematicLow() {
-    lockingPnuematics.set(false);
-  }
-
-
-  void shooterEngage() {
-    shooter.spin(forward);
-  }
-
-  void shooterDisengage() {
-    shooter.stop();
-  }
-
-
-  void pullSet0() {
-    pullup.setPosition(0, degrees);
-  }
-
-  void pullSet720() { 
-    pullup.setPosition(720, degrees);
-  }
-
-  void pullSet1440() { 
-    pullup.setPosition(1440, degrees);
-  }
-}
