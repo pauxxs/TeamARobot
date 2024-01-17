@@ -23,7 +23,7 @@ namespace helper_functions {
 
 
   void shooterEngage() {
-    shooter.spin(forward);
+    shooter.spin(reverse);
   }
 
   void shooterDisengage() {
@@ -32,19 +32,24 @@ namespace helper_functions {
 
 
   void pullSet0() {
+    Brain.Screen.print("yes?");
     pullup.setPosition(0, degrees);
   }
 
   void pullSet720() { 
+    Brain.Screen.print("yes?");
     pullup.setPosition(720, degrees);
   }
 
   void pullSet1440() { 
+    Brain.Screen.print("yes?");
     pullup.setPosition(1440, degrees);
   }
 }
 
 void controllerSetup() {
+  Brain.Screen.print("Initializing controls...");
+
   // pnuematics
   Controller1.ButtonA.pressed(helper_functions::lockingPnuematicHigh);
   Controller1.ButtonLeft.pressed(helper_functions::lockingPnuematicLow);
@@ -57,17 +62,21 @@ void controllerSetup() {
   // Shooter engage/disengage
   Controller1.ButtonR2.pressed(helper_functions::shooterEngage);
   Controller1.ButtonR2.released(helper_functions::shooterDisengage);
+
+  Brain.Screen.clearScreen();
 }
 
 void pre_auton() {
-  shooter.setPosition(0, degrees);
-  pullup.setVelocity(100, percent);
+  pullup.setPosition(0, degrees);
+  shooter.setVelocity(100, percent);
+
+  Drivetrain.setDriveVelocity(60, percent);
 }
 
 void autonomous_() {
   Drivetrain.driveFor(52, inches);
   Drivetrain.driveFor(-52, inches);
-  Drivetrain.turnFor(27.5 /* assuming that left is negative. */, degrees);
+  Drivetrain.turnFor(-27.5 /* assuming that left is negative. */, degrees);
   Drivetrain.driveFor(-48, inches);
   Drivetrain.driveFor(48, inches);
 }
