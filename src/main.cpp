@@ -21,7 +21,6 @@ namespace helper_functions {
     lockingPnuematics.set(false);
   }
 
-
   void shooterEngage() {
     shooter.spin(reverse);
   }
@@ -30,25 +29,28 @@ namespace helper_functions {
     shooter.stop();
   }
 
-
   void pullSet0() {
-    Brain.Screen.print("yes?");
-    pullup.setPosition(0, degrees);
+    // Brain.Screen.print("yes?");
+    pullup.spinToPosition(0, degrees);
   }
 
   void pullSet720() { 
-    Brain.Screen.print("yes?");
-    pullup.setPosition(720, degrees);
+    // Brain.Screen.print("yes?");
+    pullup.spinToPosition(720, degrees);
   }
 
   void pullSet1440() { 
-    Brain.Screen.print("yes?");
-    pullup.setPosition(1440, degrees);
+    // Brain.Screen.print("yes?");
+
+    pullup.spinToPosition(1440, degrees);
   }
 }
 
 void controllerSetup() {
   Brain.Screen.print("Initializing controls...");
+
+  printf("setposition to 0 deg");
+  pullup.setPosition(0, degrees);
 
   // pnuematics
   Controller1.ButtonA.pressed(helper_functions::lockingPnuematicHigh);
@@ -63,14 +65,11 @@ void controllerSetup() {
   Controller1.ButtonR2.pressed(helper_functions::shooterEngage);
   Controller1.ButtonR2.released(helper_functions::shooterDisengage);
 
-  Brain.Screen.clearScreen();
+  // Brain.Screen.clearScreen();
 }
 
 void pre_auton() {
-  pullup.setPosition(0, degrees);
-  shooter.setVelocity(100, percent);
 
-  Drivetrain.setDriveVelocity(60, percent);
 }
 
 void autonomous_() {
@@ -84,6 +83,10 @@ void autonomous_() {
 void usercontrol() {
   controllerSetup();
   // RemoteControlCodeEnabled = true;
+
+  shooter.setVelocity(100, percent);
+  pullup.setVelocity(100, percent);
+  Drivetrain.setDriveVelocity(60, percent);
 
   while (true) {
     wait(20, msec);
